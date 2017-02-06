@@ -1,4 +1,4 @@
-package ch1;
+package homework.ch1;
 /**
  * @author Steven
  */
