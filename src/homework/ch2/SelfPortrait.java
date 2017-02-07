@@ -9,7 +9,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -34,9 +33,8 @@ public class SelfPortrait extends JFrame {
         this.setTitle("Self Portrait");
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setLocationRelativeTo(null); // set location to center of screen
-        this.getContentPane().setBackground(new Color(230, 230, 255));
         this.setResizable(false);
-        this.setUndecorated(true); // remove default window / menu decoration
+        //this.setUndecorated(true); // remove default window / menu decoration
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         JLabel lblClose = new JLabel("X");
