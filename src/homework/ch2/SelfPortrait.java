@@ -9,6 +9,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -23,8 +24,10 @@ public class SelfPortrait extends JFrame {
     private static final int WINDOW_HEIGHT = 300;
     
     private static final Color COLOR_SKIN = new Color(255,224,189);
+    private static final Color COLOR_SKIN_SHADOW = new Color(255,204,169);
     private static final Color COLOR_HAZEL = new Color(86,102,56);
     private static final Color COLOR_BROWN = new Color(107,73,17);
+    private static final Color COLOR_LIP = new Color(228,168,168);
     
     public SelfPortrait() {
         super();
@@ -100,14 +103,19 @@ public class SelfPortrait extends JFrame {
         g.drawArc(135, 125, 90, 40, 65, 50);
         
         // nose
-        
+        g.setColor(COLOR_SKIN_SHADOW);
+        g.drawLine(148, 140, 144, 180);
+        g.drawLine(153, 140, 159, 180);
         
         // mouth
-        
+        g.setColor(COLOR_LIP);
+        g.drawArc(122, 170, 60, 40, 235, 70);
+        g.drawArc(122, 171, 60, 40, 235, 70);
     }
     
     public static void main(String[] args) {
-        new SelfPortrait().setVisible(true);
+        SelfPortrait me = new SelfPortrait();
+        me.setVisible(true);
     }
     
 }
