@@ -14,7 +14,8 @@ import javax.swing.border.EmptyBorder;
 /**
  * @author Steven Lariscy
  * @project# P84830
- * @date 02.09.2016
+ * @date 02.07.2016
+ * @duedate 02.09.2016
  * @description Self portrait attempt using java.awt graphics
  */
 public class SelfPortrait extends JFrame {
