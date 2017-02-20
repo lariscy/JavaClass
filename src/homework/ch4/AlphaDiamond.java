@@ -4,12 +4,14 @@ import java.util.Scanner;
 
 /**
  * @author Steven Lariscy
+ * @project 
+ * @dueDate 02.23.2017
  */
 public class AlphaDiamond {
 
     private Scanner scanner;
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     public static void main(String[] args) {
         new AlphaDiamond().run();
@@ -23,25 +25,21 @@ public class AlphaDiamond {
             debug(String.format("printing diamond from %s to %s", 'A', input));
 
             int totalLetters = input - 'A' + 1;
-            debug("totalLetters: " + totalLetters);
-
             int totalRows = totalLetters * 2 - 1;
-            debug("totalRows: " + totalRows);
-            // totalColumns would be implied by totalRows
-
             int numSpaces = 'A' - ('A' - totalLetters + 1);
-            debug("numSpaces: " + numSpaces);
-
+            debug(String.format("totalLetters: %s, totalRows: %s, numSpaces: %s", totalLetters, totalRows, numSpaces));
+            
+            // top of diamond
             char currentChar = 'A';
-            for (int i = 1; i <= totalLetters; i++) { // rows
+            for (int rowNum = 1; rowNum <= totalLetters; rowNum++, numSpaces--) { // rows
                 if (numSpaces > 0) {
                     System.out.print(String.format("%" + numSpaces + "s", " "));
                 }
-                numSpaces--;
+                
                 currentChar = 'A';
-                for (int j = 1; j <= (i * 2) - 1; j++) { // columns
+                for (int colNum = 1; colNum <= (2 * rowNum) - 1; colNum++) { // columns
                     System.out.print(currentChar);
-                    if (j > ((i * 2) - 1) / 2) {
+                    if (colNum > ((2 * rowNum) - 1) / 2) {
                         currentChar--;
                     } else {
                         currentChar++;
@@ -50,14 +48,15 @@ public class AlphaDiamond {
                 System.out.println();
             }
 
+            // bottom of diamond
             numSpaces = 1;
-            for (int i = 1; i <= (totalLetters - 1); i++) { // rows
+            for (int rowNum = 1; rowNum <= (totalLetters - 1); rowNum++, numSpaces++) { // rows
                 System.out.print(String.format("%" + numSpaces + "s", " "));
-                numSpaces++;
+                
                 currentChar = 'A';
-                for (int j = 1; j <= 2 * (totalLetters - i) - 1; j++) { // columns
+                for (int colNum = 1; colNum <= 2 * (totalLetters - rowNum) - 1; colNum++) { // columns
                     System.out.print(currentChar);
-                    if (j > (2 * (totalLetters - i) - 1) / 2) {
+                    if (colNum > (2 * (totalLetters - rowNum) - 1) / 2) {
                         currentChar--;
                     } else {
                         currentChar++;
@@ -66,8 +65,7 @@ public class AlphaDiamond {
                 System.out.println();
             }
         }
-
-        //System.out.print(String.format("%" + numSpaces + "s", " "));
+        
         scanner.close();
     } // end of run method
 
