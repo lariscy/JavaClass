@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 /**
  * @author Steven Lariscy
- * @project
+ * @project 
+ * @date 02.27.2017
  * @dueDate 03.02.2017
+ * @description Program to guess your number between 0 - 999
  */
 public class GuessYourNumber {
 
