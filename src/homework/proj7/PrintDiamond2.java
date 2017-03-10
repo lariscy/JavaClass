@@ -1,8 +1,6 @@
 package homework.proj7;
 
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 /**
  * @author Steven Lariscy
