@@ -19,7 +19,7 @@ public class PrintDiamond2 {
         for (int row = 1; row <= totalRows; row++){
             
             // print spaces
-            if ((inputNum > 1 && row < inputNum) || (inputNum > 1 && row > inputNum)){
+            if ((inputNum > 1) && (row < inputNum) || (row > inputNum)){
                 System.out.print(String.format("%" + Math.abs(inputNum - row) + "s", " "));
             }
             
