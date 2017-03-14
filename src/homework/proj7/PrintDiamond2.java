@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 /**
  * @author Steven Lariscy
+ * @projectNumber PL004T
+ * @date 3.14.2017
+ * @dueDate 3.16.2017
+ * @description program prints a diamond based on user input
  */
 public class PrintDiamond2 {
     
