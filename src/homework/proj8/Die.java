@@ -19,7 +19,6 @@ public class Die {
 
     public void roll() {
         this.currentVal = this.r.nextInt(Die.MAX_SIDES) + 1;
-        this.currentVal = this.r.nextInt(2) + 1;
     }
 
     public int getCurrentVal() {
