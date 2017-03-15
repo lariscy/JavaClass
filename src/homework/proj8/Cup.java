@@ -29,5 +29,13 @@ public class Cup {
     public Die[] getDice() {
         return dice;
     }
+    
+    public int getDiceTotal(){
+        int total = 0;
+        for (Die die : this.getDice()){
+            total += die.getCurrentVal();
+        }
+        return total;
+    }
 
 }

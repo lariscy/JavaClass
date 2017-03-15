@@ -1,139 +1,59 @@
 package homework.proj8;
 
 /**
- * @author Steven Lariscy
+ * @author Steven
  */
 public class Scorecard {
+    
+    public static final int NUM_OF_OPTIONS = 14;
+    public static final int SCORE_FOR_BONUS = 35;
+    public static final int SCORE_FOR_FULL_HOUSE = 25;
+    public static final int SCORE_FOR_LOW_STRAIGHT = 30;
+    public static final int SCORE_FOR_HIGH_STRAIGHT = 40;
+    public static final int SCORE_FOR_YAHTZEE = 50;
+    
+    private final ScoreOption[] scoreOptions;
 
-    private int ones;
-    private int twos;
-    private int threes;
-    private int fours;
-    private int fives;
-    private int sixes;
-    private int threeOfKind;
-    private int fourOfKind;
-    private int fullHouse;
-    private int lowStraight;
-    private int highStraight;
-    private int yahtzee;
-    private int chance;
-
-    public int getOnes() {
-        return ones;
+    public Scorecard() {
+        scoreOptions = new ScoreOption[NUM_OF_OPTIONS];
+        this.initOptions();
     }
 
-    public void setOnes(int ones) {
-        this.ones = ones;
+    private void initOptions() {
+        scoreOptions[0] = new ScoreOption(0, "Pass");
+        scoreOptions[1] = new ScoreOption(1, "Ones");
+        scoreOptions[2] = new ScoreOption(2, "Twos");
+        scoreOptions[3] = new ScoreOption(3, "Threes");
+        scoreOptions[4] = new ScoreOption(4, "Fours");
+        scoreOptions[5] = new ScoreOption(5, "Fives");
+        scoreOptions[6] = new ScoreOption(6, "Sixes");
+        scoreOptions[7] = new ScoreOption(7, "3 of a kind");
+        scoreOptions[8] = new ScoreOption(8, "4 of a kind");
+        scoreOptions[9] = new ScoreOption(9, "Full House");
+        scoreOptions[10] = new ScoreOption(10, "Low Straight");
+        scoreOptions[11] = new ScoreOption(11, "High Straight");
+        scoreOptions[12] = new ScoreOption(12, "Yahtzee");
+        scoreOptions[13] = new ScoreOption(13, "Chance");
     }
-
-    public int getTwos() {
-        return twos;
-    }
-
-    public void setTwos(int twos) {
-        this.twos = twos;
-    }
-
-    public int getThrees() {
-        return threes;
-    }
-
-    public void setThrees(int threes) {
-        this.threes = threes;
-    }
-
-    public int getFours() {
-        return fours;
-    }
-
-    public void setFours(int fours) {
-        this.fours = fours;
-    }
-
-    public int getFives() {
-        return fives;
-    }
-
-    public void setFives(int fives) {
-        this.fives = fives;
-    }
-
-    public int getSixes() {
-        return sixes;
-    }
-
-    public void setSixes(int sixes) {
-        this.sixes = sixes;
-    }
-
-    public int getThreeOfKind() {
-        return threeOfKind;
-    }
-
-    public void setThreeOfKind(int threeOfKind) {
-        this.threeOfKind = threeOfKind;
-    }
-
-    public int getFourOfKind() {
-        return fourOfKind;
-    }
-
-    public void setFourOfKind(int fourOfKind) {
-        this.fourOfKind = fourOfKind;
-    }
-
-    public int getFullHouse() {
-        return fullHouse;
-    }
-
-    public void setFullHouse(int fullHouse) {
-        this.fullHouse = fullHouse;
-    }
-
-    public int getLowStraight() {
-        return lowStraight;
-    }
-
-    public void setLowStraight(int lowStraight) {
-        this.lowStraight = lowStraight;
-    }
-
-    public int getHighStraight() {
-        return highStraight;
-    }
-
-    public void setHighStraight(int highStraight) {
-        this.highStraight = highStraight;
-    }
-
-    public int getYahtzee() {
-        return yahtzee;
-    }
-
-    public void setYahtzee(int yahtzee) {
-        this.yahtzee = yahtzee;
-    }
-
-    public int getChance() {
-        return chance;
-    }
-
-    public void setChance(int chance) {
-        this.chance = chance;
+    
+    public ScoreOption getScoreOption(int index){
+        return scoreOptions[index];
     }
     
     public int getBonus(){
-        int bonus = 0;
+        int bonusValue = 0;
         if (this.getSubTotal() >= 63){
-            bonus = 35;
+            bonusValue = Scorecard.SCORE_FOR_BONUS;
         }
-        return bonus;
+        return bonusValue;
     }
     
     public int getSubTotal(){
-        return this.getOnes() + this.getTwos() + this.getThrees() + 
-                this.getFours() + this.getFives() + this.getSixes();
+        int total = 0;
+        for (int i = 1; i < 7; i++){
+            total += this.getScoreOption(i).getScore();
+        }
+        return total;
     }
     
     public int getSubTotal1(){
@@ -141,48 +61,85 @@ public class Scorecard {
     }
     
     public int getSubTotal2(){
-        return this.getThreeOfKind() + this.getFourOfKind() + 
-                this.getFullHouse() + this.getLowStraight() +
-                this.getHighStraight() + this.getYahtzee() + this.getChance();
+        int total = 0;
+        for (int i = 7; i < 14; i++){
+            total += this.getScoreOption(i).getScore();
+        }
+        return total;
     }
     
     public int getGrandTotal(){
         return this.getSubTotal1() + this.getSubTotal2();
     }
     
-    public boolean scoreRoll(ScoreType score, Die[] dice){
-        boolean wasAccepted = false;
-        
-        
-        
-        return wasAccepted;
+    public boolean isScoreboardComplete(){
+        boolean isComplete = true;
+        for (int i = 1; i < scoreOptions.length; i++){
+            if (!scoreOptions[i].isPicked()){
+                isComplete = false;
+                break;
+            }
+        }
+        return isComplete;
     }
 
-    public void printScoreCard() {
-        this.printTableRow(1+")", ScoreType.ONES.getName()+":", this.getOnes(),
-                7+")", ScoreType.THREE_OF_KIND.getName()+":", this.getThreeOfKind());
-        this.printTableRow(2+")", ScoreType.TWOS.getName()+":", this.getTwos(),
-                8+")", ScoreType.FOUR_OF_KIND.getName()+":", this.getFourOfKind());
-        this.printTableRow(3+")", ScoreType.THREES.getName()+":", this.getThrees(),
-                9+")", ScoreType.FULL_HOUSE.getName()+":", this.getFullHouse());
-        this.printTableRow(4+")", ScoreType.FOURS.getName()+":", this.getFours(),
-                10+")", ScoreType.LOW_STRAIGHT.getName()+":", this.getLowStraight());
-        this.printTableRow(5+")", ScoreType.FIVES.getName()+":", this.getFives(),
-                11+")", ScoreType.HIGH_STRAIGHT.getName()+":", this.getHighStraight());
-        this.printTableRow(6+")", ScoreType.SIXES.getName()+":", this.getSixes(),
-                12+")", ScoreType.YAHTZEE.getName()+":", this.getYahtzee());
-        this.printTableRow("", "Subtotal:", this.getSubTotal(),
-                13+")", ScoreType.CHANCE.getName()+":", this.getChance());
-        this.printTableRow("", "Bonus:", this.getBonus(),
-                "", "SubTotal 2:", this.getSubTotal2());
-        this.printTableRow("", "SubTotal 1:", this.getSubTotal1(),
-                "", "SubTotal 1:", this.getSubTotal1());
-        this.printTableRow("", "", "",
+    public void printCurrentScorecard(){
+        this.printScorecardLine(
+                scoreOptions[1].getId() + ")", scoreOptions[1].getName() + ":", scoreOptions[1].getScore(),
+                scoreOptions[7].getId() + ")", scoreOptions[7].getName() + ":", scoreOptions[7].getScore());
+        this.printScorecardLine(
+                scoreOptions[2].getId() + ")", scoreOptions[2].getName() + ":", scoreOptions[2].getScore(),
+                scoreOptions[8].getId() + ")", scoreOptions[8].getName() + ":", scoreOptions[8].getScore());
+        this.printScorecardLine(
+                scoreOptions[3].getId() + ")", scoreOptions[3].getName() + ":", scoreOptions[3].getScore(),
+                scoreOptions[9].getId() + ")", scoreOptions[9].getName() + ":", scoreOptions[9].getScore());
+        this.printScorecardLine(
+                scoreOptions[4].getId() + ")", scoreOptions[4].getName() + ":", scoreOptions[4].getScore(),
+                scoreOptions[10].getId() + ")", scoreOptions[10].getName() + ":", scoreOptions[10].getScore());
+        this.printScorecardLine(
+                scoreOptions[5].getId() + ")", scoreOptions[5].getName() + ":", scoreOptions[5].getScore(),
+                scoreOptions[11].getId() + ")", scoreOptions[11].getName() + ":", scoreOptions[11].getScore());
+        this.printScorecardLine(
+                scoreOptions[6].getId() + ")", scoreOptions[6].getName() + ":", scoreOptions[6].getScore(),
+                scoreOptions[12].getId() + ")", scoreOptions[12].getName() + ":", scoreOptions[12].getScore());
+        this.printScorecardLine(
+                "", "Subtotal:", this.getSubTotal(),
+                scoreOptions[13].getId() + ")", scoreOptions[13].getName() + ":", scoreOptions[13].getScore());
+        this.printScorecardLine(
+                "", "Bonus:", this.getBonus(),
+                "", "Subtotal 2:", this.getSubTotal2());
+        this.printScorecardLine(
+                "", "Subtotal 1:", this.getSubTotal1(),
+                "", "Subtotal 1:", this.getSubTotal1());
+        this.printScorecardLine(
+                "", "", "",
                 "", "Grand Total:", this.getGrandTotal());
     }
     
-    private void printTableRow(Object arg1, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6){
-        System.out.format("%-3s%11s%3s%10s%-3s%15s%3s\n", arg1, arg2, arg3, "", arg4, arg5, arg6);
+    private void printScorecardLine(Object... args){
+        System.out.format("%-3s%11s%3s   ~~   %-3s%15s%3s\n", args);
+    }
+    
+    public boolean isValidOption(int index){
+        return !this.getScoreOption(index).isPicked();
+    }
+
+    public int getValidOptionsLeft() {
+        int numOfValidOptionsLeft = 0;
+        for (ScoreOption option : scoreOptions) {
+            if (!option.isPicked()) {
+                numOfValidOptionsLeft++;
+            }
+        }
+        return numOfValidOptionsLeft;
+    }
+    
+    public void printValidOptions(){
+        for (ScoreOption option : scoreOptions){
+            if (!option.isPicked()){
+                System.out.println(option.getId() + ") " + option.getName());
+            }
+        }
     }
 
 }
