@@ -52,7 +52,29 @@ public class GameRunner {
                         + player2.getName() + "] " + "Scorecard already completed");
             }
             System.out.println("");
+            
+            if (this.player1.getScorecard().isScoreboardComplete() && 
+                    this.player2.getScorecard().isScoreboardComplete()){
+                System.out.println("Game Over! Printing final score cards");
+                System.out.println("");
+                break;
+            }
         }
+        
+        System.out.println("[" + player1.getName() + "] " + "Current Scorecard");
+        player1.getScorecard().printCurrentScorecard();
+        
+        System.out.println("[" + player2.getName() + "] " + "Current Scorecard");
+        player2.getScorecard().printCurrentScorecard();
+        
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.print("Winner: ");
+        if (player1.getScorecard().getGrandTotal() > player2.getScorecard().getGrandTotal()){
+            System.out.println(player1.getName());
+        } else {
+            System.out.println(player2.getName());
+        }
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         s.close();
     }
