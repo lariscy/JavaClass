@@ -5,24 +5,31 @@ import java.util.StringJoiner;
 
 /**
  * @author Steven Lariscy
+ * @projectNumber PL004T
+ * @date 3.20.2017
+ * @dueDate 3.23.2017
+ * @description text based Yahtzee game
  */
 public class GameRunner {
     
+    // constants
     public static final int MAX_PLAYER_TURNS = 39;
 
+    // instance variables
     private Player player1;
     private Player player2;
     private final Scanner s;
     private final Cup cup;
 
+    // constructor
     public GameRunner() {
         this.s = new Scanner(System.in);
         this.cup = new Cup();
-    }
+    } // end of constructor
 
     public static void main(String[] args) {
         new GameRunner().play();
-    }
+    } // end of main
 
     private void play() {
         System.out.print("Player 1 enter name: ");
@@ -39,8 +46,8 @@ public class GameRunner {
             if (!this.player1.getScorecard().isScoreboardComplete()){
                 this.processPlayerTurn(this.player1, turnNum);
             } else {
-                System.out.println("[Turn " + turnNum + " of " + MAX_PLAYER_TURNS + " - " 
-                        + player1.getName() + "] " + "Scorecard already completed");
+                System.out.println("[Turn " + turnNum + " of " + GameRunner.MAX_PLAYER_TURNS + " - " 
+                        + this.player1.getName() + "] " + "Scorecard already completed");
             }
             System.out.println("");
             
@@ -48,8 +55,8 @@ public class GameRunner {
             if (!this.player2.getScorecard().isScoreboardComplete()){
                 this.processPlayerTurn(this.player2, turnNum);
             } else {
-                System.out.println("[Turn " + turnNum + " of " + MAX_PLAYER_TURNS + " - " 
-                        + player2.getName() + "] " + "Scorecard already completed");
+                System.out.println("[Turn " + turnNum + " of " + GameRunner.MAX_PLAYER_TURNS + " - " 
+                        + this.player2.getName() + "] " + "Scorecard already completed");
             }
             System.out.println("");
             
@@ -61,45 +68,46 @@ public class GameRunner {
             }
         }
         
-        System.out.println("[" + player1.getName() + "] " + "Current Scorecard");
-        player1.getScorecard().printCurrentScorecard();
+        System.out.println("[" + this.player1.getName() + "] " + "Final Scorecard");
+        this.player1.getScorecard().printCurrentScorecard();
         
-        System.out.println("[" + player2.getName() + "] " + "Current Scorecard");
-        player2.getScorecard().printCurrentScorecard();
+        System.out.println("[" + this.player2.getName() + "] " + "Final Scorecard");
+        this.player2.getScorecard().printCurrentScorecard();
         
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.print("Winner: ");
-        if (player1.getScorecard().getGrandTotal() > player2.getScorecard().getGrandTotal()){
-            System.out.println(player1.getName());
+        if (this.player1.getScorecard().getGrandTotal() > this.player2.getScorecard().getGrandTotal()){
+            System.out.println(this.player1.getName());
         } else {
-            System.out.println(player2.getName());
+            System.out.println(this.player2.getName());
         }
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
-        s.close();
-    }
+        this.s.close();
+    } // end of play
 
     private String getDiceValueAsString() {
         StringJoiner sj = new StringJoiner(", ");
-        for (Die die : cup.getDice()) {
+        for (Die die : this.cup.getDice()) {
             sj.add(String.valueOf(die.getCurrentVal()));
-        }
+        } // end for
         return sj.toString();
-    }
+    } // end of getDiceValueAsString
 
     private void processPlayerTurn(Player player, int turnNum) {
-        System.out.println("[Turn " + turnNum + " of " + MAX_PLAYER_TURNS + " - " 
+        System.out.println("[Turn " + turnNum + " of " + GameRunner.MAX_PLAYER_TURNS + " - " 
                 + player.getName() + "] " + "Current Scorecard");
         player.getScorecard().printCurrentScorecard();
 
         this.cup.roll();
-        System.out.println("[Turn " + turnNum + " of " + MAX_PLAYER_TURNS + " - " 
+        System.out.println("[Turn " + turnNum + " of " + GameRunner.MAX_PLAYER_TURNS + " - " 
                 + player.getName() + "] " + "Rolled: " + this.getDiceValueAsString());
+        
         player.getScorecard().printValidOptions();
 
         boolean validChoice = false;
-        do {
-            System.out.print("[Turn " + turnNum + " of " + MAX_PLAYER_TURNS + " - " 
+        do { // while (!validChoice)
+            System.out.print("[Turn " + turnNum + " of " + GameRunner.MAX_PLAYER_TURNS + " - " 
                     + player.getName() + "] " + "Choose option: ");
             int playerOption = this.s.nextInt();
             if (player.getScorecard().isValidOption(playerOption)){
@@ -107,90 +115,92 @@ public class GameRunner {
                     case 0:
                         // pass
                         // set 0 to picked if its not possible (becaue of lack of turns)
-                        if (player.getScorecard().getValidOptionsLeft() >= (MAX_PLAYER_TURNS - turnNum)){
+                        if (player.getScorecard().getValidOptionsLeft() >= (GameRunner.MAX_PLAYER_TURNS - turnNum)){
                             player.getScorecard().getScoreOption(playerOption).setPicked(true);
                         }
-                        System.out.println("[Turn " + turnNum + " of " + MAX_PLAYER_TURNS + " - " 
+                        System.out.println("[Turn " + turnNum + " of " + GameRunner.MAX_PLAYER_TURNS + " - " 
                                     + player.getName() + "] Player passed");
                         break;
                     case 1:
+                        // ones
                         // logic in case 6
                     case 2:
+                        // twos
                         // logic in case 6
                     case 3:
+                        // threes
                         // logic in case 6
                     case 4:
+                        // fours
                         // logic in case 6
                     case 5:
+                        // fives
                         // logic in case 6
                     case 6:
+                        // sixes
+                        // logic for ones through sixes
                         int numOfOption = 0;
                         for (Die die : this.cup.getDice()){
                             if (die.getCurrentVal() == playerOption){
                                 numOfOption++;
-                            }
-                        }
+                            } //end if
+                        } // end for
                         player.getScorecard().getScoreOption(playerOption).setScore(playerOption * numOfOption);
                         player.getScorecard().getScoreOption(playerOption).setPicked(true);
+                        this.checkIfPlayerScoredZero(player, turnNum, playerOption);
                         break;
                     case 7:
                         // 3 of a kind
                         int[] numOfEachNumber = {0, 0, 0, 0, 0, 0};
                         for (Die die : this.cup.getDice()){
                             numOfEachNumber[die.getCurrentVal()-1]++;
-                        }
+                        } // end for
                         boolean threeFound = false;
                         for (int num : numOfEachNumber){
                             if (num >= 3){
                                 threeFound = true;
                                 break;
-                            }
-                        }
-                        if (threeFound){
-                            player.getScorecard().getScoreOption(playerOption).setScore(this.cup.getDiceTotal());
-                        } else {
-                            player.getScorecard().getScoreOption(playerOption).setScore(0);
-                        }
+                            } // end if
+                        } // end for
+                        player.getScorecard().getScoreOption(playerOption)
+                                .setScore(threeFound ? this.cup.getDiceTotal() : 0);
                         player.getScorecard().getScoreOption(playerOption).setPicked(true);
+                        this.checkIfPlayerScoredZero(player, turnNum, playerOption);
                         break;
                     case 8:
                         // 4 of a kind
                         int[] numOfEachNumber2 = {0, 0, 0, 0, 0, 0};
                         for (Die die : this.cup.getDice()){
                             numOfEachNumber2[die.getCurrentVal()-1]++;
-                        }
+                        } // end for
                         boolean fourFound = false;
                         for (int num : numOfEachNumber2){
                             if (num >= 4){
                                 fourFound = true;
                                 break;
-                            }
-                        }
-                        if (fourFound){
-                            player.getScorecard().getScoreOption(playerOption).setScore(this.cup.getDiceTotal());
-                        } else {
-                            player.getScorecard().getScoreOption(playerOption).setScore(0);
-                        }
+                            } // end if
+                        } // end for
+                        player.getScorecard().getScoreOption(playerOption)
+                                .setScore(fourFound ? this.cup.getDiceTotal() : 0);
                         player.getScorecard().getScoreOption(playerOption).setPicked(true);
+                        this.checkIfPlayerScoredZero(player, turnNum, playerOption);
                         break;
                     case 9:
                         // full house
                         int[] counts = new int[6];
-                        for (Die dice : cup.getDice()) {
+                        for (Die dice : this.cup.getDice()) {
                             counts[dice.getCurrentVal() - 1]++;
-                        }
+                        } // end for
                         boolean check2 = false;
                         boolean check3 = false;
                         for (int i: counts) {
                             check2 |= (i==2);
                             check3 |= (i==3);
-                        }
-                        if (check2 && check3){
-                            player.getScorecard().getScoreOption(playerOption).setScore(Scorecard.SCORE_FOR_FULL_HOUSE);
-                        } else {
-                            player.getScorecard().getScoreOption(playerOption).setScore(0);
-                        }
+                        } // end for
+                        player.getScorecard().getScoreOption(playerOption)
+                                .setScore((check2 && check3) ? Scorecard.SCORE_FOR_FULL_HOUSE : 0);
                         player.getScorecard().getScoreOption(playerOption).setPicked(true);
+                        this.checkIfPlayerScoredZero(player, turnNum, playerOption);
                         break;
                     case 10:
                         // low straight
@@ -201,19 +211,17 @@ public class GameRunner {
                                 if (die.getCurrentVal() == i){
                                     foundNum = true;
                                     break;
-                                }
-                            }
+                                } // end if
+                            } // end for
                             if (!foundNum){
                                 isLowStraight = false;
                                 break;
-                            }
-                        }
-                        if (isLowStraight){
-                            player.getScorecard().getScoreOption(playerOption).setScore(Scorecard.SCORE_FOR_LOW_STRAIGHT);
-                        } else {
-                            player.getScorecard().getScoreOption(playerOption).setScore(0);
-                        }
+                            } // end if
+                        } // end for
+                        player.getScorecard().getScoreOption(playerOption)
+                                .setScore(isLowStraight ? Scorecard.SCORE_FOR_LOW_STRAIGHT : 0);
                         player.getScorecard().getScoreOption(playerOption).setPicked(true);
+                        this.checkIfPlayerScoredZero(player, turnNum, playerOption);
                         break;
                     case 11:
                         // high straight
@@ -224,19 +232,17 @@ public class GameRunner {
                                 if (die.getCurrentVal() == i){
                                     foundNum = true;
                                     break;
-                                }
-                            }
+                                } // end if
+                            } // end for
                             if (!foundNum){
                                 isHighStraight = false;
                                 break;
-                            }
-                        }
-                        if (isHighStraight){
-                            player.getScorecard().getScoreOption(playerOption).setScore(Scorecard.SCORE_FOR_HIGH_STRAIGHT);
-                        } else {
-                            player.getScorecard().getScoreOption(playerOption).setScore(0);
-                        }
+                            } // end if
+                        } // end for
+                        player.getScorecard().getScoreOption(playerOption)
+                                .setScore(isHighStraight ? Scorecard.SCORE_FOR_HIGH_STRAIGHT : 0);
                         player.getScorecard().getScoreOption(playerOption).setPicked(true);
+                        this.checkIfPlayerScoredZero(player, turnNum, playerOption);
                         break;
                     case 12:
                         // yahtzee
@@ -246,30 +252,37 @@ public class GameRunner {
                             if (dice[0].getCurrentVal() != dice[i].getCurrentVal()){
                                 allSame = false;
                                 break;
-                            }
-                        }
-                        if (allSame){
-                            player.getScorecard().getScoreOption(playerOption).setScore(Scorecard.SCORE_FOR_YAHTZEE);
-                        } else {
-                            player.getScorecard().getScoreOption(playerOption).setScore(0);
-                        }
+                            } // end if
+                        } // end for
+                        player.getScorecard().getScoreOption(playerOption)
+                                .setScore(allSame ? Scorecard.SCORE_FOR_YAHTZEE: 0);
                         player.getScorecard().getScoreOption(playerOption).setPicked(true);
+                        this.checkIfPlayerScoredZero(player, turnNum, playerOption);
                         break;
                     case 13:
+                        // chance
                         int totalScore = 0;
                         for (Die die : this.cup.getDice()){
                             totalScore += die.getCurrentVal();
-                        }
+                        } // end for
                         player.getScorecard().getScoreOption(playerOption).setScore(totalScore);
                         player.getScorecard().getScoreOption(playerOption).setPicked(true);
+                        this.checkIfPlayerScoredZero(player, turnNum, playerOption);
                         break;
-                }
+                } // end switch
                 validChoice = true;
-            } else {
-                System.out.println("[Turn " + turnNum + " of " + MAX_PLAYER_TURNS + " - " 
+            } else { // end if
+                System.out.println("[Turn " + turnNum + " of " + GameRunner.MAX_PLAYER_TURNS + " - " 
                         + player.getName() + "] Invalid Option! Choose again");
-            }
-        } while (!validChoice);
+            } // end else
+        } while (!validChoice); // end of while
+    } // end of processPlayerTurn
+    
+    private void checkIfPlayerScoredZero(Player player, int turnNum, int playerOption){
+        if (player.getScorecard().getScoreOption(playerOption).getScore() == 0){
+            System.out.println("[Turn " + turnNum + " of " + GameRunner.MAX_PLAYER_TURNS + " - " 
+                    + player.getName() + "] Roll did not meet criteria. Score will be 0");
+        }
     }
 
-}
+} // end class
