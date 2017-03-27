@@ -1,4 +1,4 @@
-package ch8;
+package cl8;
 
 public class Main {
 	
