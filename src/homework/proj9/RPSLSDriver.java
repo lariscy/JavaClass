@@ -15,6 +15,6 @@ public class RPSLSDriver {
         Scanner keyboard = new Scanner(System.in);
         new RPSLSGame(keyboard).play();
         keyboard.close();
-    }
+    } // end of main
     
-}
+} // end class

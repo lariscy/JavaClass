@@ -11,12 +11,14 @@ import java.util.Scanner;
  */
 public class RPSLSHumanPlayer extends RPSLSPlayer {
     
+    // instance variables
     private final Scanner keyboard;
 
+    // constructor
     public RPSLSHumanPlayer(String name, Scanner keyboard) {
         super(name);
         this.keyboard = keyboard;
-    }
+    } // end of constructor
 
     @Override
     public RPSLSOption shoot() {
@@ -24,9 +26,9 @@ public class RPSLSHumanPlayer extends RPSLSPlayer {
         RPSLSOption[] options = RPSLSOption.values();
         for (RPSLSOption option : options){
             System.out.println(option.ordinal() + ") " + option.getSimpleName());
-        }
-        System.out.print("");
-        return options[keyboard.nextInt()];
-    }
+        } // end for
+        System.out.print("Choose option: ");
+        return options[Integer.parseInt(this.keyboard.nextLine())];
+    } // end of shoot
     
-}
+} // end class

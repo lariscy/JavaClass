@@ -14,10 +14,6 @@ public abstract class RPSLSPlayer {
     private int currentPoints;
 
     // constructor
-    public RPSLSPlayer() {
-    } // end default constructor
-
-    // constructor
     public RPSLSPlayer(String name) {
         this.name = name;
     } // end constructor

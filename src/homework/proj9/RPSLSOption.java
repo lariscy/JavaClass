@@ -24,7 +24,7 @@ public enum RPSLSOption {
     } // end of constructor
 
     public String getSimpleName() {
-        return simpleName;
+        return this.simpleName;
     } // end getSimpleName
     
 } // end class

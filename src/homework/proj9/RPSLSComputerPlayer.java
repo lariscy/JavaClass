@@ -15,18 +15,21 @@ public class RPSLSComputerPlayer extends RPSLSPlayer {
         "Bob", "Tom", "Sally", "Jim", "John", "Dallas", "Bella"
     };
 
+    // constructor
     public RPSLSComputerPlayer() {
-        super(NAMES[RPSLSGame.RANDOM.nextInt(NAMES.length)] + NAME_SUFFIX);
-    }
+        this(RPSLSComputerPlayer
+                .NAMES[RPSLSGame.RANDOM.nextInt(RPSLSComputerPlayer.NAMES.length)]);
+    } // end constructor
 
+     // constructor
     public RPSLSComputerPlayer(String name) {
-        super(name + NAME_SUFFIX);
-    }
+        super(name + RPSLSComputerPlayer.NAME_SUFFIX);
+    } // end constructor
 
     @Override
     public RPSLSOption shoot() {
         RPSLSOption[] options = RPSLSOption.values();
         return options[RPSLSGame.RANDOM.nextInt(options.length)];
-    }
+    } // end of shoot
     
-}
+} // end class
