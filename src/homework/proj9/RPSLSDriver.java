@@ -12,9 +12,9 @@ import java.util.Scanner;
 public class RPSLSDriver {
     
     public static void main(String[] args) {
-        Scanner keyboard = new Scanner(System.in);
-        new RPSLSGame(keyboard).play();
-        keyboard.close();
+        try (Scanner keyboard = new Scanner(System.in)) {
+            new RPSLSGame(keyboard).play();
+        } // end try-with-resources (this will close Scanner)
     } // end of main
     
 } // end class
