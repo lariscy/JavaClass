@@ -27,7 +27,7 @@ public class RPSLSHumanPlayer extends RPSLSPlayer {
         for (RPSLSOption option : options){
             System.out.println(option.ordinal() + ") " + option.getSimpleName());
         } // end for
-        System.out.print("Choose option: ");
+        System.out.print(super.getName() + ", choose option: ");
         return options[Integer.parseInt(this.keyboard.nextLine())];
     } // end of shoot
     

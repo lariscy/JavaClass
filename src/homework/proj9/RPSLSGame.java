@@ -1,6 +1,5 @@
 package homework.proj9;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -29,12 +28,10 @@ public class RPSLSGame {
     public void play(){
         this.showWelcome();
         
-        RPSLSGameType gameType = this.decideGameType();
-        
         RPSLSPlayer player1 = null;
         RPSLSPlayer player2 = null;
         
-        switch(gameType){
+        switch(this.decideGameType()){
             case HUMAN_VS_HUMAN:
                 System.out.print("Player1 enter your name: ");
                 player1 = new RPSLSHumanPlayer(this.keyboard.nextLine(), this.keyboard);
@@ -61,11 +58,13 @@ public class RPSLSGame {
             System.out.println("Game will be " + player1.getName() + " vs. " + 
                     player2.getName());
             
-            RPSLSOption player1Option;
-            RPSLSOption player2Option;
+            RPSLSOption player1Option = null;
+            RPSLSOption player2Option = null;
             RPSLSOption[] options = RPSLSOption.values();
             
-            do { // do while no player has POINTS_TO_WIN
+            do { // while no player has won
+                System.out.println("**ROUND " + this.turnNumber + "**");
+                
                 player1Option = player1.shoot();
                 System.out.println(this.turnNumber + "- " + player1.getName() + 
                         " : " + player1Option.getSimpleName());
@@ -79,11 +78,11 @@ public class RPSLSGame {
                 if (winResult == 0){
                     System.out.println("Players tied!");
                 } else if ((winResult % 2) != 0){ // end if
-                    // winResult is odd
+                    // winResult is odd (player1 wins)
                     System.out.println(player1.getName() + " wins hand");
                     player1.incrementPoints();
                 } else { // end else if
-                    // winResult is even
+                    // winResult is even (player2 wins)
                     System.out.println(player2.getName() + " wins hand");
                     player2.incrementPoints();
                 } // end else
@@ -96,9 +95,11 @@ public class RPSLSGame {
             return; // leave method
         } // end else
         
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println((player1.getCurrentPoints() >= RPSLSGame.POINTS_TO_WIN ?
                 player1.getName() : player2.getName()) + " wins the game with a score of " + 
                 player1.getCurrentPoints() + " : " + player2.getCurrentPoints() + "!");
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     } // end of play
     
     private void showWelcome(){
@@ -109,11 +110,12 @@ public class RPSLSGame {
     
     private RPSLSGameType decideGameType(){
         System.out.println("--Game Type Menu--");
-        for (RPSLSGameType type : RPSLSGameType.values()){
+        RPSLSGameType[] gameTypes = RPSLSGameType.values();
+        for (RPSLSGameType type : gameTypes){
             System.out.println(type.ordinal() + ") " + type.getSimpleName());
         } // end for
         System.out.print("Choose game type: ");
-        return RPSLSGameType.values()[Integer.parseInt(this.keyboard.nextLine())];
+        return gameTypes[Integer.parseInt(this.keyboard.nextLine())];
     } // end of decideGameType
 
     public Scanner getKeyboard() {
