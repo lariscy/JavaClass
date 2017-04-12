@@ -2,6 +2,10 @@ package homework.proj11;
 
 /**
  * @author Steven Lariscy
+ * @projectNumber PL004T
+ * @date 4.12.2017
+ * @dueDate 4.13.2017
+ * @description Travel Mileage Calculator
  */
 public enum Cities {
     
@@ -12,12 +16,18 @@ public enum Cities {
     
     private final String simpleName;
 
+    // end constructor
     private Cities(String simpleName) {
         this.simpleName = simpleName;
-    }
+    } // end constructor
 
     public String getSimpleName() {
         return this.simpleName;
-    }
+    } // end getSimpleName
+
+    @Override
+    public String toString() {
+        return this.getSimpleName();
+    } // end toString
     
-}
+} // end class
