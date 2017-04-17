@@ -110,7 +110,6 @@ public class CipherGUI extends JFrame implements ActionListener {
         panel.add(this.txtSubCipher, gbc);
 
         this.btnResetSub = new JButton(CipherGUI.RESET_BUTTON_TEXT);
-        this.btnResetSub.addActionListener(this);
         gbc.gridwidth = 3;
         gbc.gridy = 2;
         gbc.gridx = 1;
@@ -156,7 +155,6 @@ public class CipherGUI extends JFrame implements ActionListener {
         panel.add(this.txtTransCipher, gbc);
 
         this.btnResetTrans = new JButton(CipherGUI.RESET_BUTTON_TEXT);
-        this.btnResetTrans.addActionListener(this);
         gbc.gridwidth = 3;
         gbc.gridy = 6;
         gbc.gridx = 1;
@@ -177,6 +175,8 @@ public class CipherGUI extends JFrame implements ActionListener {
         this.btnSubDecode.addActionListener(this);
         this.btnTransEncode.addActionListener(this);
         this.btnTransDecode.addActionListener(this);
+        this.btnResetSub.addActionListener(this);
+        this.btnResetTrans.addActionListener(this);
     } // end setupListeners
 
     @Override
