@@ -39,7 +39,7 @@ public class TranspositionCipher implements MessageEncoder, MessageDecoder {
             } // end for
         } // end for
         return encodedSB.toString();
-    }
+    } // end encode
 
     @Override
     public String decode(String cipherText) {

@@ -8,7 +8,7 @@ package homework.proj12;
  * @description Cipher Program
  */
 public interface MessageEncoder {
-    
+
     public abstract String encode(String plainText);
-    
+
 } // end interface

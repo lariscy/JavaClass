@@ -8,10 +8,10 @@ package homework.proj12;
  * @description Cipher Program
  */
 public class CipherDriver {
-    
+
     public static void main(String[] args) {
         CipherGUI gui = new CipherGUI();
         gui.setVisible(true);
     } // end main
-    
+
 } // end class

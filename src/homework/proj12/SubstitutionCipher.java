@@ -11,26 +11,26 @@ public class SubstitutionCipher implements MessageEncoder, MessageDecoder {
 
     // constants
     private static final int NUM_LETTERS_IN_ALPHABET = 26;
-    
+
     // instance variables
     private final int shiftBy;
 
     // constructor
     public SubstitutionCipher(int shiftBy) {
-        if (shiftBy > 0 && shiftBy < SubstitutionCipher.NUM_LETTERS_IN_ALPHABET){
+        if (shiftBy > 0 && shiftBy < SubstitutionCipher.NUM_LETTERS_IN_ALPHABET) {
             this.shiftBy = shiftBy;
         } else { // end if
             throw new IllegalArgumentException(
-                    "SubstitutionCipher only accepts values in the range of 1 " +
-                    " - " + (SubstitutionCipher.NUM_LETTERS_IN_ALPHABET - 1));
+                    "SubstitutionCipher only accepts values in the range of 1 "
+                    + " - " + (SubstitutionCipher.NUM_LETTERS_IN_ALPHABET - 1));
         } // end else
     } // end constructor
 
     @Override
     public String encode(String plainText) {
         StringBuilder encodedSB = new StringBuilder();
-        for (char c : plainText.toLowerCase().toCharArray()){
-            if (c >= 'a' && c <= 'z'){
+        for (char c : plainText.toLowerCase().toCharArray()) {
+            if (c >= 'a' && c <= 'z') {
                 encodedSB.append((char) ((c - 'a' + this.shiftBy) % SubstitutionCipher.NUM_LETTERS_IN_ALPHABET + 'a'));
             } else { // end if
                 encodedSB.append(c);
@@ -42,8 +42,8 @@ public class SubstitutionCipher implements MessageEncoder, MessageDecoder {
     @Override
     public String decode(String cipherText) {
         StringBuilder decodedSB = new StringBuilder();
-        for (char c : cipherText.toCharArray()){
-            if (c >= 'a' && c <= 'z'){
+        for (char c : cipherText.toCharArray()) {
+            if (c >= 'a' && c <= 'z') {
                 decodedSB.append((char) ((c - 'a' + SubstitutionCipher.NUM_LETTERS_IN_ALPHABET - this.shiftBy) % SubstitutionCipher.NUM_LETTERS_IN_ALPHABET + 'a'));
             } else { // end if
                 decodedSB.append(c);
@@ -51,5 +51,5 @@ public class SubstitutionCipher implements MessageEncoder, MessageDecoder {
         } // end for
         return decodedSB.toString();
     } // end decode
-    
+
 } // end class

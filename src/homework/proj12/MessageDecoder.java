@@ -8,7 +8,7 @@ package homework.proj12;
  * @description Cipher Program
  */
 public interface MessageDecoder {
-    
+
     public abstract String decode(String cipherText);
-    
+
 } // end interface
