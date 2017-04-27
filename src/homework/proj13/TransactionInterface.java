@@ -7,8 +7,8 @@ package homework.proj13;
  * @dueDate 4.27.2017
  * @description Bank Program
  */
-public enum TransactionType {
+public interface TransactionInterface {
     
-    CREATE_ACCOUNT, OPEN, WITHDRAW, DEPOSIT, SHOW_BALANCE, QUIT;
+    public boolean doTransaction(Customer customer, double amount);
     
-} // end enum
+} // end interface
