@@ -78,7 +78,7 @@ public class DieGUI extends JComponent {
 	}
 
 	private void drawPip(Graphics g, int x, int y) {
-		g.fillOval(x - PIP_DIAM, y - PIP_DIAM, PIP_DIAM, PIP_DIAM);
+		g.fillOval(x - PIP_DIAM / 2, y - PIP_DIAM / 2, PIP_DIAM, PIP_DIAM);
 	}
 
 }
