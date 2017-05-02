@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homework.proj14.ScoreCardController">
+   <children>
+      <TableView fx:id="tblBasicSection">
+        <columns>
+          <TableColumn fx:id="colName" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Base Section" />
+          <TableColumn fx:id="colHowToScore" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="How To Score" />
+            <TableColumn fx:id="colScore" editable="false" prefWidth="75.0" sortable="false" text="Score" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>
