@@ -1,4 +1,4 @@
-package homework.proj14;
+package homework.proj14.old2;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
@@ -21,65 +21,29 @@ public class DieController {
     private Rectangle rectangle;
 
     private final Die die;
-    private boolean dieHeld;
-    private boolean dieLocked;
     
     public DieController() {
         this.die = new Die();
     }
     
     public void roll(){
-        if (!this.isDieHeld()){
-            this.die.roll();
-            this.addPips();
-        }
+        this.die.roll();
+        this.addPips();
     }
     
     public int getCurrentValue(){
         return this.die.getCurrentValue();
     }
 
-    public boolean isDieHeld() {
-        return this.dieHeld;
-    }
-
-    public void setDieHeld(boolean dieHeld) {
-        this.dieHeld = dieHeld;
-    }
-
-    public boolean isDieLocked() {
-        return this.dieLocked;
-    }
-
-    public void setDieLocked(boolean dieLocked) {
-        this.dieLocked = dieLocked;
-    }
-    
-    private void invertHeld(){
-        this.setDieHeld(!this.isDieHeld());
-        if (this.isDieHeld()){
-            this.root.setStyle("-fx-background-color: #000000");
-        } else {
-            this.root.setStyle("-fx-background-color: -fx-background");
-        }
-    }
-    
-    @FXML
-    private void holdDie(){
-        if (this.getCurrentValue() > 0 && !this.isDieLocked()){
-            this.invertHeld();
-        }
-    }
-
     private void addPips() {
-        // remove existing pips
-        this.root.getChildren().removeIf((node) -> {
-            return node instanceof Circle;
-        });
-        
         if (this.getCurrentValue() > 0){
 //            double rectangleWidth = this.rectangle.getWidth();
 //            double rectangleHeight = this.rectangle.getHeight();
+            
+            // remove existing pips
+            this.root.getChildren().removeIf((node) -> {
+                return node instanceof Circle;
+            });
             
             // choose pip color
             Color pipColor = null;

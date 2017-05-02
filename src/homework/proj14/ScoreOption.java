@@ -1,43 +1,43 @@
 package homework.proj14;
 
-import javafx.scene.control.Button;
-
-/**
- * @author Steven
- */
 public class ScoreOption {
     
-    private String name;
-    private String howToScore;
-    private final Button btnScore;
+    // instance variables
+    private final String name;
+    private final int id;
+    private int score;
+    private boolean picked;
 
-    public ScoreOption(String name, String howToScore) {
+    // contructor
+    public ScoreOption(int id, String name) {
+        this.id = id;
         this.name = name;
-        this.howToScore = howToScore;
-        btnScore = new Button("Score");
-        btnScore.setOnAction((event) -> {
-            System.out.println("clicked: " + this.name);
-        });
-    }
+        this.setScore(0);
+        this.setPicked(false);
+    } // end of constructor
 
     public String getName() {
-        return name;
-    }
+        return this.name;
+    } // end of getName
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public int getId() {
+        return this.id;
+    } // end of getId
 
-    public String getHowToScore() {
-        return howToScore;
-    }
+    public int getScore() {
+        return this.score;
+    } // end of getScore
 
-    public void setHowToScore(String howToScore) {
-        this.howToScore = howToScore;
-    }
+    public final void setScore(int score) {
+        this.score = score;
+    } // end of setScore
 
-    public Button getBtnScore() {
-        return btnScore;
-    }
+    public boolean isPicked() {
+        return this.picked;
+    } // end of isPicked
 
-}
+    public final void setPicked(boolean picked) {
+        this.picked = picked;
+    } // end of setPicked
+
+} // end of class

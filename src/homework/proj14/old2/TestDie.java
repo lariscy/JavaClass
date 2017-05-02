@@ -1,4 +1,4 @@
-package homework.proj14;
+package homework.proj14.old2;
 
 import java.util.Random;
 import javafx.application.Application;

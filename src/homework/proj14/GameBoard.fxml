@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox spacing="5.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homework.proj14.GameBoardController">
+<VBox spacing="10.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homework.proj14.GameBoardController">
    <children>
       <HBox alignment="CENTER_LEFT">
          <children>
@@ -18,13 +18,22 @@
                </font>
             </Label>
             <Pane HBox.hgrow="ALWAYS" />
-            <Button fx:id="btnNewGame" mnemonicParsing="false" text="New Game" />
+            <Button mnemonicParsing="false" onAction="#exitApp" text="Exit" />
          </children>
       </HBox>
-      <fx:include fx:id="diePanel" source="DiePanel.fxml" />
-      <HBox alignment="CENTER">
+      <HBox fx:id="dieHolder" alignment="CENTER" spacing="10.0">
+          <children>
+              <fx:include fx:id="die1" source="Die.fxml" />
+              <fx:include fx:id="die2" source="Die.fxml" />
+              <fx:include fx:id="die3" source="Die.fxml" />
+              <fx:include fx:id="die4" source="Die.fxml" />
+              <fx:include fx:id="die5" source="Die.fxml" />
+          </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
          <children>
-            <Button fx:id="btnRoll" mnemonicParsing="false" text="Roll" />
+            <Button mnemonicParsing="false" onAction="#rollDice" text="Roll" />
+            <Label fx:id="lblTurnNumber" />
          </children>
       </HBox>
    </children>
