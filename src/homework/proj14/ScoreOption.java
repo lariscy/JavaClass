@@ -1,57 +1,67 @@
 package homework.proj14;
 
-import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
+/**
+ * @author Steven Lariscy
+ * @projectNumber PL004T
+ * @date 5.3.2017
+ * @dueDate 5.4.2017
+ * @description Kismet
+ */
 public class ScoreOption {
     
     // instance variables
     private final int id;
     private final String name;
     private final String howToScore;
-    private int score;
-    private final SimpleBooleanProperty picked;
-    //private boolean picked;
+    private final SimpleIntegerProperty score = new SimpleIntegerProperty();
+    private boolean picked;
 
     // contructor
     public ScoreOption(int id, String name, String howToScore) {
+        this(id, name, howToScore, false);
+    } // end constructor
+
+    // contructor
+    public ScoreOption(int id, String name, String howToScore, boolean picked) {
         this.id = id;
         this.name = name;
         this.howToScore = howToScore;
         this.setScore(0);
-        picked = new SimpleBooleanProperty(false);
-//        this.setPicked(false);
-    } // end of constructor
+        this.setPicked(picked);
+    } // end constructor
 
     public int getId() {
         return this.id;
-    } // end of getId
+    } // end getId
     
     public String getName() {
         return this.name;
-    } // end of getName
+    } // end getName
 
     public String getHowToScore() {
         return this.howToScore;
-    }
+    } // end getHowToScore
 
     public int getScore() {
-        return this.score;
-    } // end of getScore
+        return this.score.get();
+    } // end getScore
 
     public final void setScore(int score) {
-        this.score = score;
-    } // end of setScore
+        this.score.set(score);
+    } // end setScore
 
     public boolean isPicked() {
-        return this.picked.get();
-    } // end of isPicked
+        return this.picked;
+    } // end isPicked
 
     public final void setPicked(boolean picked) {
-        this.picked.set(picked);
-    } // end of setPicked
+        this.picked = picked;
+    } // end setPicked
     
-    public SimpleBooleanProperty pickedProperty(){
-        return this.picked;
-    }
+    public SimpleIntegerProperty scoreProperty(){
+        return this.score;
+    } // end scoreProperty
 
-} // end of class
+} // end class

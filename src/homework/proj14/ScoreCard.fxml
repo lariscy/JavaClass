@@ -1,12 +1,21 @@
+<!--
+/**
+ * @author Steven Lariscy
+ * @projectNumber PL004T
+ * @date 5.3.2017
+ * @dueDate 5.4.2017
+ * @description Kismet
+ */
+-->
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homework.proj14.ScoreCardController">
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homework.proj14.ScoreCardController">
    <children>
-      <TableView fx:id="tblScoreCard" maxWidth="1.7976931348623157E308" prefHeight="505.0" HBox.hgrow="ALWAYS">
+      <TableView fx:id="tblScoreCard" maxWidth="1.7976931348623157E308" prefHeight="570.0" HBox.hgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="colIndex" editable="false" minWidth="30.0" prefWidth="30.0" resizable="false" sortable="false" text="#" />
           <TableColumn fx:id="colOption" editable="false" minWidth="150.0" prefWidth="150.0" resizable="false" sortable="false" text="Option" />

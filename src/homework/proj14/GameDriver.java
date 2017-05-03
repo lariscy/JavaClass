@@ -8,6 +8,10 @@ import javafx.stage.Stage;
 
 /**
  * @author Steven Lariscy
+ * @projectNumber PL004T
+ * @date 5.3.2017
+ * @dueDate 5.4.2017
+ * @description Kismet
  */
 public class GameDriver extends Application {
 
@@ -24,4 +28,4 @@ public class GameDriver extends Application {
         primaryStage.show();
     } // end start
     
-} // end of class
+} // end class
