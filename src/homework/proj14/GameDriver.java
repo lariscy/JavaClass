@@ -20,7 +20,8 @@ public class GameDriver extends Application {
         Parent root = FXMLLoader.load(this.getClass().getResource("GameBoard.fxml"));
         primaryStage.setTitle("Kismet");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
     } // end start
     
-} // end class
+} // end of class

@@ -32,6 +32,10 @@ public class DieController {
         if (!this.isDieHeld()){
             this.die.roll();
             this.addPips();
+        } else {
+            this.setDieLocked(true);
+            // set color to distinguish die being "locked"
+            this.root.setStyle("-fx-background-color: #000000");
         }
     }
     
@@ -58,8 +62,10 @@ public class DieController {
     private void invertHeld(){
         this.setDieHeld(!this.isDieHeld());
         if (this.isDieHeld()){
-            this.root.setStyle("-fx-background-color: #000000");
+            // set color to distinguish die being "held"
+            this.root.setStyle("-fx-background-color: #0000ff");
         } else {
+            // set color to back to default
             this.root.setStyle("-fx-background-color: -fx-background");
         }
     }
@@ -99,29 +105,44 @@ public class DieController {
             // add new pips
             switch(this.die.getCurrentValue()){
                 case 1:
-                    root.getChildren().add(new Circle(rectangle.getWidth() / 2, rectangle.getHeight() / 2, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(rectangle.getWidth() / 2, 
+                            rectangle.getHeight() / 2, PIP_SIZE, pipColor));
                     break;
                 case 3:
-                    root.getChildren().add(new Circle(rectangle.getWidth() / 2, rectangle.getHeight() / 2, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(rectangle.getWidth() / 2, 
+                            rectangle.getHeight() / 2, PIP_SIZE, pipColor));
                 case 2:
-                    root.getChildren().add(new Circle(rectangle.getWidth() / 4, rectangle.getHeight() / 4, PIP_SIZE, pipColor));
-                    root.getChildren().add(new Circle(3 * rectangle.getWidth() / 4, 3 * rectangle.getHeight() / 4, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(rectangle.getWidth() / 4, 
+                            rectangle.getHeight() / 4, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(3 * rectangle.getWidth() / 4, 
+                            3 * rectangle.getHeight() / 4, PIP_SIZE, pipColor));
                     break;
                 case 5:
-                    root.getChildren().add(new Circle(rectangle.getWidth() / 2, rectangle.getHeight() / 2, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(rectangle.getWidth() / 2, 
+                            rectangle.getHeight() / 2, PIP_SIZE, pipColor));
                 case 4:
-                    root.getChildren().add(new Circle(rectangle.getWidth() / 4, rectangle.getHeight() / 4, PIP_SIZE, pipColor));
-                    root.getChildren().add(new Circle(3 * rectangle.getWidth() / 4, 3 * rectangle.getHeight() / 4, PIP_SIZE, pipColor));
-                    root.getChildren().add(new Circle(3 * rectangle.getWidth() / 4, rectangle.getHeight() / 4, PIP_SIZE, pipColor));
-                    root.getChildren().add(new Circle(rectangle.getWidth() / 4, 3 * rectangle.getHeight() / 4, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(rectangle.getWidth() / 4, 
+                            rectangle.getHeight() / 4, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(3 * rectangle.getWidth() / 4, 
+                            3 * rectangle.getHeight() / 4, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(3 * rectangle.getWidth() / 4, 
+                            rectangle.getHeight() / 4, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(rectangle.getWidth() / 4, 
+                            3 * rectangle.getHeight() / 4, PIP_SIZE, pipColor));
                     break;
                 case 6:
-                    root.getChildren().add(new Circle(rectangle.getWidth() / 4, rectangle.getHeight() / 4, PIP_SIZE, pipColor));
-                    root.getChildren().add(new Circle(3 * rectangle.getWidth() / 4, 3 * rectangle.getHeight() / 4, PIP_SIZE, pipColor));
-                    root.getChildren().add(new Circle(3 * rectangle.getWidth() / 4, rectangle.getHeight() / 4, PIP_SIZE, pipColor));
-                    root.getChildren().add(new Circle(rectangle.getWidth() / 4, 3 * rectangle.getHeight() / 4, PIP_SIZE, pipColor));
-                    root.getChildren().add(new Circle(rectangle.getWidth() / 4, rectangle.getHeight() / 2, PIP_SIZE, pipColor));
-                    root.getChildren().add(new Circle(3 * rectangle.getWidth() / 4, rectangle.getHeight() / 2, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(rectangle.getWidth() / 4, 
+                            rectangle.getHeight() / 4, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(3 * rectangle.getWidth() / 4, 
+                            3 * rectangle.getHeight() / 4, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(3 * rectangle.getWidth() / 4, 
+                            rectangle.getHeight() / 4, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(rectangle.getWidth() / 4, 
+                            3 * rectangle.getHeight() / 4, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(rectangle.getWidth() / 4, 
+                            rectangle.getHeight() / 2, PIP_SIZE, pipColor));
+                    root.getChildren().add(new Circle(3 * rectangle.getWidth() / 4, 
+                            rectangle.getHeight() / 2, PIP_SIZE, pipColor));
                     break;
                 default:
                     System.err.println("what what");
@@ -129,4 +150,4 @@ public class DieController {
         }
     }
     
-}
+} // end of class

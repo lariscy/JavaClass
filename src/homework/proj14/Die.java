@@ -38,4 +38,4 @@ public class Die {
         this.setCurrentValue(this.random.nextInt(this.numberOfSides) + 1);
     }
     
-}
+} // end of class

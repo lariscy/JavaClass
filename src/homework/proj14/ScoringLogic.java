@@ -25,10 +25,10 @@ public class ScoringLogic {
         return retVal;
     }
     
-    private static boolean hasNOfAKind(int[] dieValues, int numberOfAKind){
+    private static boolean hasNOfAKind(int[] dieValues, int count){
         boolean wasFound = false;
         for (int number : new int[]{1,2,3,4,5}){
-            if (ScoringLogic.hasNOrGreaterOfNumber(dieValues, numberOfAKind, number)){
+            if (ScoringLogic.hasNOrGreaterOfNumber(dieValues, count, number)){
                 wasFound = true;
                 break;
             }
@@ -211,8 +211,9 @@ public class ScoringLogic {
         return allSame ? ScoringLogic.getSumOfDiceValues(dieValues) + 50 : 0;
     }
     
+    // @TODO remove - added for testing
     public static void main(String[] args) {
         System.out.println(getScoreTwoPairSameColor(new int[]{3,4,3,4,3}));
     }
     
-}
+} // end of class
