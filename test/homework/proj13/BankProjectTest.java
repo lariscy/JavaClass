@@ -9,18 +9,8 @@ import org.junit.Test;
 public class BankProjectTest {
     
     @Test
-    public void testBaseline(){
-        assertTrue("baseline true test", true);
-    }
-    
-    @Test
     public void testNumberOfTransactionTypes(){
         assertEquals("number of TransactionTypes is 6", 6, TransactionType.values().length);
-    }
-    
-    @Test
-    public void testMinimumAccountStartingBalance(){
-        assertEquals("ensure minimum starting balance is 200", 200, Bank.MIN_INITIAL_DEPOSIT_DOLLARS);
     }
     
     @Test
